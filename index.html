@@ -143,7 +143,7 @@
             display: inline-flex;
             align-items: center;
             gap: 1rem;
-            transition: all 0.3s;
+            transition: all 0.3s ease-out;
             box-shadow: 0 10px 30px rgba(255, 87, 34, 0.3);
         }
 
@@ -228,9 +228,26 @@
             padding: 3rem 2rem;
             border-radius: 12px;
             text-align: center;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(0, 0, 0, 0.1);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 87, 34, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .service-card:hover::before {
+            left: 100%;
         }
 
         .service-card:hover {
@@ -245,6 +262,11 @@
             color: #ff5722;
             margin-bottom: 1.5rem;
             font-weight: 700;
+            transition: transform 0.3s;
+        }
+
+        .service-card:hover .service-number {
+            transform: scale(1.1);
         }
 
         .service-card h3 {
@@ -252,6 +274,11 @@
             margin-bottom: 1.5rem;
             font-weight: 600;
             color: #000;
+            transition: color 0.3s;
+        }
+
+        .service-card:hover h3 {
+            color: #ff5722;
         }
 
         .service-card p {
@@ -272,7 +299,24 @@
             border-radius: 12px;
             border: 1px solid rgba(0, 0, 0, 0.1);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 87, 34, 0.1), transparent);
+            transition: left 0.6s;
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
         }
 
         .feature-card:hover {
@@ -286,6 +330,11 @@
             color: #ff5722;
             margin-bottom: 1rem;
             font-weight: 700;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover .feature-number {
+            transform: scale(1.1);
         }
 
         .feature-card h3 {
@@ -293,6 +342,11 @@
             margin-bottom: 1rem;
             font-weight: 600;
             color: #000;
+            transition: color 0.3s;
+        }
+
+        .feature-card:hover h3 {
+            color: #ff5722;
         }
 
         .feature-card p {
