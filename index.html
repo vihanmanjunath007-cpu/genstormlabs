@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GenStorm Labs | Your Story, Online</title>
+<title>Book a Consultation | GenStorm Labs</title>
 <style>
 * {
 margin: 0;
@@ -12,9 +12,10 @@ box-sizing: border-box;
 }
 body {
 font-family: 'Helvetica Neue', Arial, sans-serif;
-background: #ffffff;
-color: #000000;
+background: #000000;
+color: #ffffff;
 overflow-x: hidden;
+min-height: 100vh;
 }
 /* Header/Navigation */
 header {
@@ -27,9 +28,9 @@ display: flex;
 justify-content: space-between;
 align-items: center;
 z-index: 1000;
-background: rgba(255, 255, 255, 0.95);
+background: rgba(0, 0, 0, 0.95);
 backdrop-filter: blur(10px);
-border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+border-bottom: 1px solid rgba(255, 87, 34, 0.2);
 }
 .logo-container {
 display: flex;
@@ -39,110 +40,158 @@ gap: 0.5rem;
 .logo-text {
 font-size: 1.3rem;
 font-weight: 600;
-color: #000;
+color: #fff;
 }
-nav {
-display: flex;
-gap: 1.5rem;
-align-items: center;
-}
-nav a {
+.back-link {
 color: #ff5722;
 text-decoration: none;
-font-size: 0.8rem;
+font-size: 0.9rem;
 font-weight: 500;
 letter-spacing: 1px;
 text-transform: uppercase;
 transition: all 0.3s;
-position: relative;
-}
-nav a:hover {
-color: #000;
-}
-nav a::after {
-content: '';
-position: absolute;
-bottom: -5px;
-left: 0;
-width: 0;
-height: 2px;
-background: #ff5722;
-transition: width 0.3s;
-}
-nav a:hover::after {
-width: 100%;
-}
-/* Mobile Menu */
-.mobile-menu-toggle {
-display: none;
-flex-direction: column;
-justify-content: space-between;
-width: 25px;
-height: 20px;
-cursor: pointer;
-z-index: 1001;
-}
-.mobile-menu-toggle span {
-display: block;
-height: 3px;
-width: 100%;
-background-color: #000;
-border-radius: 2px;
-transition: all 0.3s ease;
-}
-.mobile-menu-toggle.active span:nth-child(1) {
-transform: translateY(8px) rotate(45deg);
-}
-.mobile-menu-toggle.active span:nth-child(2) {
-opacity: 0;
-}
-.mobile-menu-toggle.active span:nth-child(3) {
-transform: translateY(-8px) rotate(-45deg);
-}
-/* Hero Section - Black Background */
-.hero {
-min-height: 100vh;
 display: flex;
 align-items: center;
-justify-content: center;
-position: relative;
-overflow: hidden;
-background: #000000;
+gap: 0.5rem;
 }
+.back-link:hover {
+color: #ff7043;
+transform: translateX(-5px);
+}
+/* Canvas Background */
 .canvas-container {
-position: absolute;
+position: fixed;
 top: 0;
 left: 0;
 width: 100%;
 height: 100%;
-z-index: 1;
+z-index: 0;
 }
-#interactiveCanvas {
+#bgCanvas {
 width: 100%;
 height: 100%;
 display: block;
 }
-.hero-content {
+/* Main Content */
+.consultation-container {
 position: relative;
 z-index: 10;
+padding: 8rem 2rem 4rem;
+max-width: 1200px;
+margin: 0 auto;
+}
+.page-title {
 text-align: center;
-max-width: 800px;
-padding: 0 2rem;
+margin-bottom: 1rem;
 }
-.hero-text h1 {
-font-size: 2.5rem;
+.page-title h1 {
+font-size: 3rem;
 font-weight: 300;
-margin-bottom: 1.5rem;
-color: #fff;
+color: #ffffff;
+margin-bottom: 1rem;
 }
-.hero-text p {
-font-size: 1.1rem;
+.page-title p {
+font-size: 1.2rem;
 color: #ccc;
-margin-bottom: 3rem;
+max-width: 600px;
+margin: 0 auto;
 line-height: 1.6;
 }
-.cta-button {
-padding: 1.2rem 2.5rem;
+/* Booking Grid */
+.booking-grid {
+display: grid;
+grid-template-columns: 1fr;
+gap: 2rem;
+margin-top: 4rem;
+}
+/* Form Card */
+.form-card {
+background: rgba(255, 255, 255, 0.05);
+backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 87, 34, 0.2);
+border-radius: 16px;
+padding: 3rem;
+box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+transition: all 0.4s ease;
+}
+.form-card:hover {
+border-color: rgba(255, 87, 34, 0.5);
+box-shadow: 0 25px 80px rgba(255, 87, 34, 0.2);
+}
+.form-card h2 {
+font-size: 2rem;
+margin-bottom: 2rem;
+color: #ff5722;
+font-weight: 400;
+}
+.form-group {
+margin-bottom: 1.5rem;
+}
+.form-group label {
+display: block;
+margin-bottom: 0.5rem;
+color: #ffffff;
+font-weight: 500;
+font-size: 0.95rem;
+letter-spacing: 0.5px;
+}
+.form-group input,
+.form-group textarea {
+width: 100%;
+padding: 1rem;
+background: rgba(255, 255, 255, 0.08);
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 8px;
+color: #ffffff;
+font-size: 1rem;
+font-family: 'Helvetica Neue', Arial, sans-serif;
+transition: all 0.3s ease;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+outline: none;
+border-color: #ff5722;
+background: rgba(255, 255, 255, 0.12);
+box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1);
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+color: rgba(255, 255, 255, 0.4);
+}
+.form-group textarea {
+min-height: 120px;
+resize: vertical;
+}
+/* Calendar Card */
+.calendar-card {
+background: rgba(255, 255, 255, 0.05);
+backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 87, 34, 0.2);
+border-radius: 16px;
+padding: 3rem;
+box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+transition: all 0.4s ease;
+}
+.calendar-card:hover {
+border-color: rgba(255, 87, 34, 0.5);
+box-shadow: 0 25px 80px rgba(255, 87, 34, 0.2);
+}
+.calendar-card h2 {
+font-size: 2rem;
+margin-bottom: 2rem;
+color: #ff5722;
+font-weight: 400;
+}
+/* Calendly Embed Styling */
+.calendly-inline-widget {
+min-height: 700px;
+border-radius: 8px;
+overflow: hidden;
+}
+/* Submit Button */
+.submit-button {
+width: 100%;
+padding: 1.2rem 2rem;
 background: #ff5722;
 color: #fff;
 text-decoration: none;
@@ -150,340 +199,133 @@ font-size: 1rem;
 font-weight: 600;
 letter-spacing: 2px;
 text-transform: uppercase;
-border-radius: 4px;
-display: inline-flex;
-align-items: center;
-gap: 1rem;
+border-radius: 8px;
+border: none;
+cursor: pointer;
 transition: all 0.3s ease-out;
-box-shadow: 0 10px 30px rgba(255, 87, 34, 0.3);
+box-shadow: 0 10px 30px rgba(255, 87, 34, 0.4);
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 1rem;
+margin-top: 2rem;
 }
-.cta-button:hover {
+.submit-button:hover {
 transform: translateY(-3px);
 background: #ff7043;
-box-shadow: 0 15px 40px rgba(255, 87, 34, 0.5);
+box-shadow: 0 15px 40px rgba(255, 87, 34, 0.6);
 }
-.cta-button::after {
+.submit-button:active {
+transform: translateY(-1px);
+}
+.submit-button::after {
 content: '→';
 font-size: 1.5rem;
 transition: transform 0.3s;
 }
-.cta-button:hover::after {
+.submit-button:hover::after {
 transform: translateX(5px);
 }
-/* Sections - White Background */
-.section {
-padding: 5rem 5%;
-position: relative;
-z-index: 2;
-background: #ffffff;
+.submit-button:disabled {
+opacity: 0.6;
+cursor: not-allowed;
+transform: none;
 }
-.section-light {
-background: #f9f9f9;
-}
-.section-content {
-max-width: 1200px;
-margin: 0 auto;
-}
-.section h2 {
-font-size: 2.5rem;
-margin-bottom: 3rem;
-font-weight: 300;
+/* Success Message */
+.success-message {
+display: none;
+background: rgba(76, 175, 80, 0.1);
+border: 1px solid rgba(76, 175, 80, 0.3);
+border-radius: 8px;
+padding: 1.5rem;
+margin-top: 2rem;
 text-align: center;
-color: #000;
+color: #81c784;
+animation: slideIn 0.5s ease-out;
 }
-/* About Section */
-.about-content {
-text-align: center;
-max-width: 900px;
-margin: 0 auto;
+.success-message.show {
+display: block;
 }
-.about-subtitle {
-font-size: 1.3rem;
-color: #ff5722;
-margin-bottom: 3rem;
-font-style: italic;
-font-weight: 300;
-}
-.about-text {
-font-size: 1.1rem;
-line-height: 1.8;
-color: #666;
-margin-bottom: 2rem;
-text-align: left;
-}
-.about-highlight {
-color: #ff5722;
-font-weight: 600;
-}
-/* Services Grid */
-.services-grid {
-display: grid;
-grid-template-columns: 1fr;
-gap: 2rem;
-}
-.service-card {
-background: rgba(255, 255, 255, 0.9);
-padding: 2.5rem 1.5rem;
-border-radius: 12px;
-text-align: center;
-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-border: 1px solid rgba(0, 0, 0, 0.1);
-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-position: relative;
-overflow: hidden;
-}
-.service-card::before {
-content: '';
-position: absolute;
-top: 0;
-left: -100%;
-width: 100%;
-height: 100%;
-background: linear-gradient(90deg, transparent, rgba(255, 87, 34, 0.1), transparent);
-transition: left 0.6s;
-}
-.service-card:hover::before {
-left: 100%;
-}
-.service-card:hover {
-transform: translateY(-10px);
-background: rgba(255, 255, 255, 1);
-border-color: rgba(255, 87, 34, 0.3);
-box-shadow: 0 20px 40px rgba(255, 87, 34, 0.2);
-}
-.service-number {
-font-size: 2.5rem;
-color: #ff5722;
-margin-bottom: 1.5rem;
-font-weight: 700;
-transition: transform 0.3s;
-}
-.service-card:hover .service-number {
-transform: scale(1.1);
-}
-.service-card h3 {
-font-size: 1.3rem;
-margin-bottom: 1.5rem;
-font-weight: 600;
-color: #000;
-transition: color 0.3s;
-}
-.service-card:hover h3 {
-color: #ff5722;
-}
-.service-card p {
-color: #666;
-line-height: 1.6;
-}
-/* Features Grid */
-.features-grid {
-display: grid;
-grid-template-columns: 1fr;
-gap: 2rem;
-}
-.feature-card {
-background: rgba(255, 255, 255, 0.9);
-padding: 2rem 1.5rem;
-border-radius: 12px;
-border: 1px solid rgba(0, 0, 0, 0.1);
-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-position: relative;
-overflow: hidden;
-}
-.feature-card::before {
-content: '';
-position: absolute;
-top: 0;
-left: -100%;
-width: 100%;
-height: 100%;
-background: linear-gradient(90deg, transparent, rgba(255, 87, 34, 0.1), transparent);
-transition: left 0.6s;
-}
-.feature-card:hover::before {
-left: 100%;
-}
-.feature-card:hover {
-transform: translateY(-5px);
-border-color: rgba(255, 87, 34, 0.3);
-box-shadow: 0 15px 30px rgba(255, 87, 34, 0.2);
-}
-.feature-number {
-font-size: 1.8rem;
-color: #ff5722;
-margin-bottom: 1rem;
-font-weight: 700;
-transition: transform 0.3s;
-}
-.feature-card:hover .feature-number {
-transform: scale(1.1);
-}
-.feature-card h3 {
-font-size: 1.2rem;
-margin-bottom: 1rem;
-font-weight: 600;
-color: #000;
-transition: color 0.3s;
-}
-.feature-card:hover h3 {
-color: #ff5722;
-}
-.feature-card p {
-color: #666;
-line-height: 1.7;
-}
-/* Consultation Section */
-.consultation-section {
-text-align: center;
-padding: 5rem 5%;
-background: #f9f9f9;
-}
-.consultation-content {
-max-width: 600px;
-margin: 0 auto;
-}
-.consultation-section h2 {
-font-size: 2rem;
-margin-bottom: 2rem;
-color: #000;
-}
-.consultation-section p {
-font-size: 1.1rem;
-color: #666;
-margin-bottom: 3rem;
-line-height: 1.6;
-}
-/* Footer */
-footer {
-padding: 3rem 5%;
-background: #000;
-text-align: center;
-color: #fff;
-}
-footer p {
-margin-bottom: 0.5rem;
-color: #ccc;
-}
-/* Scroll Animation */
-.scroll-reveal {
+@keyframes slideIn {
+from {
 opacity: 0;
-transform: translateY(30px);
-transition: all 0.8s ease-out;
+transform: translateY(-20px);
 }
-.scroll-reveal.revealed {
+to {
 opacity: 1;
 transform: translateY(0);
 }
-.scroll-reveal.service-card,
-.scroll-reveal.feature-card {
-transition-delay: 0.1s;
+}
+/* Info Section */
+.info-section {
+background: rgba(255, 87, 34, 0.05);
+border: 1px solid rgba(255, 87, 34, 0.2);
+border-radius: 12px;
+padding: 2rem;
+margin-bottom: 2rem;
+}
+.info-section h3 {
+color: #ff5722;
+font-size: 1.2rem;
+margin-bottom: 1rem;
+font-weight: 500;
+}
+.info-section p {
+color: #ccc;
+line-height: 1.7;
+margin-bottom: 0.5rem;
+}
+.info-section ul {
+list-style: none;
+padding-left: 0;
+margin-top: 1rem;
+}
+.info-section ul li {
+color: #ccc;
+padding: 0.5rem 0;
+padding-left: 1.5rem;
+position: relative;
+}
+.info-section ul li::before {
+content: '✓';
+position: absolute;
+left: 0;
+color: #ff5722;
+font-weight: bold;
 }
 /* Responsive */
 @media (min-width: 768px) {
-header {
-padding: 2rem 4rem;
-}
-nav {
-gap: 2.5rem;
-}
-nav a {
-font-size: 0.9rem;
-letter-spacing: 2px;
-}
-.hero-text h1 {
+.page-title h1 {
 font-size: 4rem;
 }
-.hero-text p {
-font-size: 1.2rem;
-}
-.section {
-padding: 8rem 5%;
-}
-.section h2 {
-font-size: 3rem;
-}
-.services-grid {
-grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+.booking-grid {
+grid-template-columns: 1fr 1fr;
 gap: 3rem;
 }
-.service-card {
-padding: 3rem 2rem;
 }
-.service-number {
-font-size: 3rem;
-}
-.service-card h3 {
-font-size: 1.5rem;
-}
-.features-grid {
-grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-gap: 3rem;
-}
-.feature-card {
-padding: 2.5rem;
-}
-.feature-number {
-font-size: 2rem;
-}
-.feature-card h3 {
-font-size: 1.3rem;
-}
-.consultation-section {
-padding: 6rem 5%;
-}
-.consultation-section h2 {
-font-size: 2.5rem;
-}
-.consultation-section p {
-font-size: 1.2rem;
-}
-footer {
-padding: 4rem 5%;
-}
-}
-@media (max-width: 768px) {
+@media (max-width: 767px) {
 header {
 padding: 1rem 1.5rem;
 }
-nav {
-position: fixed;
-top: 0;
-right: -100%;
-width: 70%;
-max-width: 300px;
-height: 100vh;
-background: rgba(255, 255, 255, 0.98);
-backdrop-filter: blur(10px);
-flex-direction: column;
-justify-content: flex-start;
-align-items: flex-start;
-padding-top: 5rem;
-transition: right 0.3s ease;
-z-index: 999;
-box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+.consultation-container {
+padding: 6rem 1.5rem 2rem;
 }
-nav.active {
-right: 0;
-}
-nav a {
-font-size: 1rem;
-padding: 1rem 2rem;
-width: 100%;
-text-align: left;
-border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-.mobile-menu-toggle {
-display: flex;
-}
-.about-text {
-text-align: center;
-}
-.hero-text h1 {
+.page-title h1 {
 font-size: 2rem;
 }
-.hero-text p {
+.page-title p {
 font-size: 1rem;
+}
+.form-card,
+.calendar-card {
+padding: 2rem 1.5rem;
+}
+.form-card h2,
+.calendar-card h2 {
+font-size: 1.5rem;
+}
+.calendly-inline-widget {
+min-height: 600px;
 }
 }
 </style>
@@ -493,248 +335,112 @@ font-size: 1rem;
 <div class="logo-container">
 <span class="logo-text">GenStorm Labs</span>
 </div>
-<div class="mobile-menu-toggle">
-<span></span>
-<span></span>
-<span></span>
-</div>
-<nav>
-<a href="#home">Home</a>
-<a href="#about">About</a>
-<a href="#services">Services</a>
-<a href="#features">Features</a>
-<a href="consultation.html">Consultation</a>
-</nav>
+<a href="index.html" class="back-link">
+<span>←</span> Back to Home
+</a>
 </header>
-<section class="hero" id="home">
-<div class="canvas-container">
-<canvas id="interactiveCanvas"></canvas>
-</div>
-<div class="hero-content">
-<div class="hero-text">
-<h1>"Your Story, Online."</h1>
-<p>We help brands tell their story through bold, custom-built websites that push the boundaries of digital innovation.</p>
-</div>
-<a href="consultation.html" class="cta-button">Book a Consultation</a>
-</div>
-</section>
-<section class="section section-light" id="about">
-<div class="section-content">
-<h2 class="scroll-reveal">A Closer Look at GenStorm Labs</h2>
-<div class="about-content">
-<p class="about-subtitle scroll-reveal">"Where Ideas Become Digital Storms"</p>
-<p class="about-text scroll-reveal">
-At <span class="about-highlight">GenStorm Labs</span>, we're passionate about turning ideas into powerful, visually striking websites. Founded by <span class="about-highlight">Vihan</span>, our mission is to help small businesses, startups, and creative entrepreneurs shine online.
-</p>
-<p class="about-text scroll-reveal">
-We specialize in <span class="about-highlight">custom web development</span>, creating sleek business websites and interactive digital experiences that captivate audiences and drive results.
-</p>
-<p class="about-text scroll-reveal">
-This site is more than a portfolio — it's a gateway to your <span class="about-highlight">digital transformation</span>. Explore our services, view our work, and let us help you create an unforgettable online presence that tells your unique story.
-</p>
-</div>
-</div>
-</section>
-<section class="section" id="services">
-<div class="section-content">
-<h2 class="scroll-reveal">Our Services</h2>
-<div class="services-grid">
-<div class="service-card scroll-reveal">
-<div class="service-number">01</div>
-<h3>Website Development</h3>
-<p>Build unique, fully functional websites tailored to your brand and business goals with cutting-edge technology.</p>
-</div>
-<div class="service-card scroll-reveal">
-<div class="service-number">02</div>
-<h3>Maintenance & Support</h3>
-<p>Keep your website secure, updated, and running smoothly with ongoing maintenance and premium support.</p>
-</div>
-<div class="service-card scroll-reveal">
-<div class="service-number">03</div>
-<h3>Branding & Content</h3>
-<p>Bring your brand to life with visuals and words that connect with your audience and drive engagement.</p>
-</div>
-</div>
-</div>
-</section>
-<section class="section section-light" id="features">
-<div class="section-content">
-<h2 class="scroll-reveal">Why Choose GenStorm Labs</h2>
-<div class="features-grid">
-<div class="feature-card scroll-reveal">
-<div class="feature-number">01</div>
-<h3>Strategic Development & Future-Proof Technology</h3>
-<p>We use modern, clean code standards and rigorous testing protocols to ensure a flexible and future-proof codebase for your platform.</p>
-</div>
-<div class="feature-card scroll-reveal">
-<div class="feature-number">02</div>
-<h3>Cost-Effective Solutions</h3>
-<p>Our efficient, modular approach focuses on your business KPIs and delivering the features you need to generate ROI quickly.</p>
-</div>
-<div class="feature-card scroll-reveal">
-<div class="feature-number">03</div>
-<h3>24/7 Support and Monitoring</h3>
-<p>Proactive, automated monitoring ensures 99.9% uptime and real-time patching of security vulnerabilities after launch.</p>
-</div>
-</div>
-</div>
-</section>
-<section class="consultation-section" id="consultation">
-<div class="consultation-content">
-<h2 class="scroll-reveal">Ready to Launch Your Vision?</h2>
-<p class="scroll-reveal">Let's discuss how we can transform your ideas into a powerful digital presence that tells your unique story.</p>
-<a href="consultation.html" class="cta-button scroll-reveal">Book a Consultation</a>
-</div>
-</section>
-<footer id="contact">
-<p>&copy; 2025 GenStorm Labs. All rights reserved.</p>
-<p>Founded by Vihan | Where Ideas Become Digital Storms</p>
-</footer>
-<script>
-// Mobile detection
-const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth < 768;
 
-// Advanced Particle System with Dynamic Grid Formation
-const canvas = document.getElementById('interactiveCanvas');
+<div class="canvas-container">
+<canvas id="bgCanvas"></canvas>
+</div>
+
+<div class="consultation-container">
+<div class="page-title">
+<h1>Book Your Consultation</h1>
+<p>Let's transform your vision into a powerful digital presence. Fill out the form and schedule a time that works for you.</p>
+</div>
+
+<div class="booking-grid">
+<div class="form-card">
+<h2>Your Information</h2>
+
+<div class="info-section">
+<h3>What to Expect</h3>
+<ul>
+<li>30-minute strategy session</li>
+<li>Discussion of your project goals</li>
+<li>Custom solution recommendations</li>
+<li>Timeline and pricing overview</li>
+</ul>
+</div>
+
+<form id="consultationForm">
+<div class="form-group">
+<label for="name">Full Name *</label>
+<input type="text" id="name" name="name" required placeholder="John Smith">
+</div>
+
+<div class="form-group">
+<label for="company">Company Name *</label>
+<input type="text" id="company" name="company" required placeholder="Your Company">
+</div>
+
+<div class="form-group">
+<label for="email">Email Address *</label>
+<input type="email" id="email" name="email" required placeholder="john@company.com">
+</div>
+
+<div class="form-group">
+<label for="phone">Phone Number (Optional)</label>
+<input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+</div>
+
+<div class="form-group">
+<label for="message">Tell us about your project</label>
+<textarea id="message" name="message" placeholder="Brief description of what you're looking to build..."></textarea>
+</div>
+
+<button type="submit" class="submit-button">Submit & Continue</button>
+
+<div class="success-message" id="successMessage">
+<strong>✓ Information Submitted!</strong><br>
+Now please select a time slot from the calendar →
+</div>
+</form>
+</div>
+
+<div class="calendar-card">
+<h2>Select Your Time Slot</h2>
+<div class="info-section">
+<h3>Booking Instructions</h3>
+<p>1. Fill out the form on the left</p>
+<p>2. Choose an available time slot below</p>
+<p>3. You'll receive a confirmation email</p>
+</div>
+<!-- Calendly inline widget begin -->
+<div class="calendly-inline-widget" 
+     data-url="https://calendly.com/YOUR_USERNAME/30min?hide_gdpr_banner=1&background_color=000000&text_color=ffffff&primary_color=ff5722"
+     style="min-width:320px;height:700px;"></div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<!-- Calendly inline widget end -->
+</div>
+</div>
+</div>
+
+<script>
+// Background Animation
+const canvas = document.getElementById('bgCanvas');
 const ctx = canvas.getContext('2d');
 
 let width = canvas.width = window.innerWidth;
 let height = canvas.height = window.innerHeight;
-let mouseX = width / 2;
-let mouseY = height / 2;
-let mouseRadius = isMobile ? 0 : 150;
 
 window.addEventListener('resize', () => {
 width = canvas.width = window.innerWidth;
 height = canvas.height = window.innerHeight;
 });
 
-document.addEventListener('mousemove', (e) => {
-if (!isMobile) {
-mouseX = e.clientX;
-mouseY = e.clientY;
-}
-});
-
-class Particle {
-constructor() {
-this.x = Math.random() * width;
-this.y = Math.random() * height;
-this.size = Math.random() * 2 + 1;
-this.baseX = this.x;
-this.baseY = this.y;
-this.density = (Math.random() * 30) + 1;
-this.color = Math.random() > 0.8 ? '#ff5722' :
-Math.random() > 0.6 ? '#ffffff' :
-Math.random() > 0.4 ? '#ff8a65' : '#cccccc';
-this.speed = Math.random() * 0.5 + 0.1;
-this.angle = 0;
-this.orbitRadius = Math.random() * 50 + 20;
-this.orbitSpeed = Math.random() * 0.02 + 0.005;
-this.mode = Math.floor(Math.random() * 3);
-this.pulse = 0;
-this.pulseSpeed = Math.random() * 0.05 + 0.01;
-}
-
-update() {
-this.pulse += this.pulseSpeed;
-if (this.pulse > Math.PI * 2) this.pulse = 0;
-
-if (!isMobile) {
-const dx = mouseX - this.x;
-const dy = mouseY - this.y;
-const distance = Math.sqrt(dx * dx + dy * dy);
-const forceDirectionX = dx / distance;
-const forceDirectionY = dy / distance;
-const maxDistance = mouseRadius;
-const force = (maxDistance - distance) / maxDistance;
-const directionX = forceDirectionX * force * this.density * 0.6;
-const directionY = forceDirectionY * force * this.density * 0.6;
-
-if (distance < mouseRadius) {
-this.x -= directionX;
-this.y -= directionY;
-} else {
-if (this.x !== this.baseX) {
-let dx = this.x - this.baseX;
-this.x -= dx / 10;
-}
-if (this.y !== this.baseY) {
-let dy = this.y - this.baseY;
-this.y -= dy / 10;
-}
-}
-}
-
-if (this.mode === 1) {
-this.angle += this.orbitSpeed;
-this.x = this.baseX + Math.cos(this.angle) * this.orbitRadius;
-this.y = this.baseY + Math.sin(this.angle) * this.orbitRadius;
-} else if (this.mode === 2) {
-this.x += Math.sin(this.angle) * this.speed;
-this.y += Math.cos(this.angle) * this.speed;
-this.angle += 0.01;
-
-if (this.x < 0 || this.x > width) this.speed = -this.speed;
-if (this.y < 0 || this.y > height) this.speed = -this.speed;
-}
-}
-
-draw() {
-ctx.beginPath();
-const pulseSize = this.size + Math.sin(this.pulse) * 1;
-ctx.arc(this.x, this.y, pulseSize, 0, Math.PI * 2);
-ctx.closePath();
-ctx.fillStyle = this.color;
-
-if (this.color === '#ff5722') {
-ctx.shadowColor = '#ff5722';
-ctx.shadowBlur = 15;
-} else if (this.color === '#ffffff') {
-ctx.shadowColor = '#ffffff';
-ctx.shadowBlur = 10;
-} else {
-ctx.shadowBlur = 5;
-}
-ctx.fill();
-ctx.shadowBlur = 0;
-}
-}
-
-const particles = [];
-const particleCount = isMobile ? 0 : 200;
-for (let i = 0; i < particleCount; i++) {
-particles.push(new Particle());
-}
-
-function connectParticles() {
-for (let i = 0; i < particles.length; i++) {
-for (let j = i; j < particles.length; j++) {
-const dx = particles[i].x - particles[j].x;
-const dy = particles[i].y - particles[j].y;
-const distance = Math.sqrt(dx * dx + dy * dy);
-
-if (distance < 120) {
-ctx.beginPath();
-ctx.strokeStyle = `rgba(255, 255, 255, ${0.2 * (1 - distance/120)})`;
-ctx.lineWidth = 0.5;
-ctx.moveTo(particles[i].x, particles[i].y);
-ctx.lineTo(particles[j].x, particles[j].y);
-ctx.stroke();
-}
-}
-}
-}
-
 function drawWaves() {
-const time = Date.now() * 0.001;
-for (let i = 0; i < (isMobile ? 2 : 3); i++) {
+const time = Date.now() * 0.0005;
+ctx.clearRect(0, 0, width, height);
+
+for (let i = 0; i < 3; i++) {
 ctx.beginPath();
-ctx.strokeStyle = `rgba(255, 87, 34, ${0.15 + i * 0.1})`;
-ctx.lineWidth = isMobile ? 2 : 1;
+ctx.strokeStyle = `rgba(255, 87, 34, ${0.1 + i * 0.05})`;
+ctx.lineWidth = 2;
 for (let x = 0; x < width; x += 10) {
-const y = height/2 + Math.sin(x * 0.01 + time + i) * (isMobile ? 80 : 50) +
-Math.cos(x * 0.005 + time * 0.5) * (isMobile ? 50 : 30);
+const y = height/2 + Math.sin(x * 0.01 + time + i) * 60 +
+Math.cos(x * 0.005 + time * 0.5) * 40;
 if (x === 0) {
 ctx.moveTo(x, y);
 } else {
@@ -743,67 +449,94 @@ ctx.lineTo(x, y);
 }
 ctx.stroke();
 }
-}
 
-function animate() {
-ctx.fillStyle = isMobile ? 'rgba(0, 0, 0, 0.1)' : 'rgba(0, 0, 0, 0.05)';
-ctx.fillRect(0, 0, width, height);
+requestAnimationFrame(drawWaves);
+}
 
 drawWaves();
 
-if (!isMobile) {
-particles.forEach(particle => {
-particle.update();
-particle.draw();
+// Cal.com Embed Script - Official from Cal.com
+(function (C, A, L) { 
+    let p = function (a, ar) { a.q.push(ar); }; 
+    let d = C.document; 
+    C.Cal = C.Cal || function () { 
+        let cal = C.Cal; 
+        let ar = arguments; 
+        if (!cal.loaded) { 
+            cal.ns = {}; 
+            cal.q = cal.q || []; 
+            d.head.appendChild(d.createElement("script")).src = A; 
+            cal.loaded = true; 
+        } 
+        if (ar[0] === L) { 
+            const api = function () { p(api, arguments); }; 
+            const namespace = ar[1]; 
+            api.q = api.q || []; 
+            if(typeof namespace === "string"){
+                cal.ns[namespace] = cal.ns[namespace] || api;
+                p(cal.ns[namespace], ar);
+                p(cal, ["initNamespace", namespace]);
+            } else p(cal, ar); 
+            return;
+        } 
+        p(cal, ar); 
+    }; 
+})(window, "https://app.cal.com/embed/embed.js", "init");
+
+Cal("init", "30min", {origin:"https://app.cal.com"});
+
+Cal.ns["30min"]("inline", {
+    elementOrSelector:"#my-cal-inline-30min",
+    config: {"layout":"month_view"},
+    calLink: "genstormlabs/30min",
 });
 
-connectParticles();
-}
-
-requestAnimationFrame(animate);
-}
-
-animate();
-
-const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-const nav = document.querySelector('nav');
-
-mobileMenuToggle.addEventListener('click', () => {
-mobileMenuToggle.classList.toggle('active');
-nav.classList.toggle('active');
+Cal.ns["30min"]("ui", {
+    "hideEventTypeDetails":false,
+    "layout":"month_view",
+    styles: {
+        branding: {
+            brandColor: "#ff5722"
+        }
+    }
 });
 
-document.querySelectorAll('nav a').forEach(link => {
-link.addEventListener('click', () => {
-mobileMenuToggle.classList.remove('active');
-nav.classList.remove('active');
-});
-});
+// Form Handling
+const form = document.getElementById('consultationForm');
+const successMessage = document.getElementById('successMessage');
 
-const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
-const scrollObserver = new IntersectionObserver((entries) => {
-entries.forEach(entry => {
-if (entry.isIntersecting) {
-entry.target.classList.add('revealed');
-}
-});
-}, {
-threshold: 0.1,
-rootMargin: '0px 0px -50px 0px'
-});
-
-scrollRevealElements.forEach(element => {
-scrollObserver.observe(element);
-});
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-anchor.addEventListener('click', function (e) {
+form.addEventListener('submit', (e) => {
 e.preventDefault();
-const target = document.querySelector(this.getAttribute('href'));
-if (target) {
-target.scrollIntoView({ behavior: 'smooth' });
-}
+  
+const formData = {
+name: document.getElementById('name').value,
+company: document.getElementById('company').value,
+email: document.getElementById('email').value,
+phone: document.getElementById('phone').value,
+message: document.getElementById('message').value,
+timestamp: new Date().toISOString()
+};
+
+// Store in memory (you can replace this with your backend API)
+console.log('Form submitted:', formData);
+
+// Show success message
+successMessage.classList.add('show');
+
+// Scroll to calendar on mobile
+if (window.innerWidth < 768) {
+document.querySelector('.calendar-card').scrollIntoView({ 
+behavior: 'smooth', 
+block: 'start' 
 });
+}
+
+// Optional: Send to your backend
+// fetch('YOUR_API_ENDPOINT', {
+//   method: 'POST',
+//   headers: { 'Content-Type': 'application/json' },
+//   body: JSON.stringify(formData)
+// });
 });
 </script>
 </body>
