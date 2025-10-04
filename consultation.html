@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Book a Consultation | GenStorm Labs</title>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body {
+font-family: 'Helvetica Neue', Arial, sans-serif;
+background: #000000;
+color: #ffffff;
+overflow-x: hidden;
+min-height: 100vh;
+}
+/* Header/Navigation */
+header {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+padding: 1.5rem 2rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+z-index: 1000;
+background: rgba(0, 0, 0, 0.95);
+backdrop-filter: blur(10px);
+border-bottom: 1px solid rgba(255, 87, 34, 0.2);
+}
+.logo-container {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+.logo-text {
+font-size: 1.3rem;
+font-weight: 600;
+color: #fff;
+}
+.back-link {
+color: #ff5722;
+text-decoration: none;
+font-size: 0.9rem;
+font-weight: 500;
+letter-spacing: 1px;
+text-transform: uppercase;
+transition: all 0.3s;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+.back-link:hover {
+color: #ff7043;
+transform: translateX(-5px);
+}
+/* Canvas Background */
+.canvas-container {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 0;
+}
+#bgCanvas {
+width: 100%;
+height: 100%;
+display: block;
+}
+/* Main Content */
+.consultation-container {
+position: relative;
+z-index: 10;
+padding: 8rem 2rem 4rem;
+max-width: 1200px;
+margin: 0 auto;
+}
+.page-title {
+text-align: center;
+margin-bottom: 1rem;
+}
+.page-title h1 {
+font-size: 3rem;
+font-weight: 300;
+color: #ffffff;
+margin-bottom: 1rem;
+}
+.page-title p {
+font-size: 1.2rem;
+color: #ccc;
+max-width: 600px;
+margin: 0 auto;
+line-height: 1.6;
+}
+/* Booking Grid */
+.booking-grid {
+display: grid;
+grid-template-columns: 1fr;
+gap: 2rem;
+margin-top: 4rem;
+}
+/* Form Card */
+.form-card {
+background: rgba(255, 255, 255, 0.05);
+backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 87, 34, 0.2);
+border-radius: 16px;
+padding: 3rem;
+box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+transition: all 0.4s ease;
+}
+.form-card:hover {
+border-color: rgba(255, 87, 34, 0.5);
+box-shadow: 0 25px 80px rgba(255, 87, 34, 0.2);
+}
+.form-card h2 {
+font-size: 2rem;
+margin-bottom: 2rem;
+color: #ff5722;
+font-weight: 400;
+}
+.form-group {
+margin-bottom: 1.5rem;
+}
+.form-group label {
+display: block;
+margin-bottom: 0.5rem;
+color: #ffffff;
+font-weight: 500;
+font-size: 0.95rem;
+letter-spacing: 0.5px;
+}
+.form-group input,
+.form-group textarea {
+width: 100%;
+padding: 1rem;
+background: rgba(255, 255, 255, 0.08);
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 8px;
+color: #ffffff;
+font-size: 1rem;
+font-family: 'Helvetica Neue', Arial, sans-serif;
+transition: all 0.3s ease;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+outline: none;
+border-color: #ff5722;
+background: rgba(255, 255, 255, 0.12);
+box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1);
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+color: rgba(255, 255, 255, 0.4);
+}
+.form-group textarea {
+min-height: 120px;
+resize: vertical;
+}
+/* Calendar Card */
+.calendar-card {
+background: rgba(255, 255, 255, 0.05);
+backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 87, 34, 0.2);
+border-radius: 16px;
+padding: 3rem;
+box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+transition: all 0.4s ease;
+}
+.calendar-card:hover {
+border-color: rgba(255, 87, 34, 0.5);
+box-shadow: 0 25px 80px rgba(255, 87, 34, 0.2);
+}
+.calendar-card h2 {
+font-size: 2rem;
+margin-bottom: 2rem;
+color: #ff5722;
+font-weight: 400;
+}
+/* Calendly Embed Styling */
+.calendly-inline-widget {
+min-height: 700px;
+border-radius: 8px;
+overflow: hidden;
+}
+/* Submit Button */
+.submit-button {
+width: 100%;
+padding: 1.2rem 2rem;
+background: #ff5722;
+color: #fff;
+text-decoration: none;
+font-size: 1rem;
+font-weight: 600;
+letter-spacing: 2px;
+text-transform: uppercase;
+border-radius: 8px;
+border: none;
+cursor: pointer;
+transition: all 0.3s ease-out;
+box-shadow: 0 10px 30px rgba(255, 87, 34, 0.4);
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 1rem;
+margin-top: 2rem;
+}
+.submit-button:hover {
+transform: translateY(-3px);
+background: #ff7043;
+box-shadow: 0 15px 40px rgba(255, 87, 34, 0.6);
+}
+.submit-button:active {
+transform: translateY(-1px);
+}
+.submit-button::after {
+content: '→';
+font-size: 1.5rem;
+transition: transform 0.3s;
+}
+.submit-button:hover::after {
+transform: translateX(5px);
+}
+.submit-button:disabled {
+opacity: 0.6;
+cursor: not-allowed;
+transform: none;
+}
+/* Success Message */
+.success-message {
+display: none;
+background: rgba(76, 175, 80, 0.1);
+border: 1px solid rgba(76, 175, 80, 0.3);
+border-radius: 8px;
+padding: 1.5rem;
+margin-top: 2rem;
+text-align: center;
+color: #81c784;
+animation: slideIn 0.5s ease-out;
+}
+.success-message.show {
+display: block;
+}
+@keyframes slideIn {
+from {
+opacity: 0;
+transform: translateY(-20px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+/* Info Section */
+.info-section {
+background: rgba(255, 87, 34, 0.05);
+border: 1px solid rgba(255, 87, 34, 0.2);
+border-radius: 12px;
+padding: 2rem;
+margin-bottom: 2rem;
+}
+.info-section h3 {
+color: #ff5722;
+font-size: 1.2rem;
+margin-bottom: 1rem;
+font-weight: 500;
+}
+.info-section p {
+color: #ccc;
+line-height: 1.7;
+margin-bottom: 0.5rem;
+}
+.info-section ul {
+list-style: none;
+padding-left: 0;
+margin-top: 1rem;
+}
+.info-section ul li {
+color: #ccc;
+padding: 0.5rem 0;
+padding-left: 1.5rem;
+position: relative;
+}
+.info-section ul li::before {
+content: '✓';
+position: absolute;
+left: 0;
+color: #ff5722;
+font-weight: bold;
+}
+/* Responsive */
+@media (min-width: 768px) {
+.page-title h1 {
+font-size: 4rem;
+}
+.booking-grid {
+grid-template-columns: 1fr 1fr;
+gap: 3rem;
+}
+}
+@media (max-width: 767px) {
+header {
+padding: 1rem 1.5rem;
+}
+.consultation-container {
+padding: 6rem 1.5rem 2rem;
+}
+.page-title h1 {
+font-size: 2rem;
+}
+.page-title p {
+font-size: 1rem;
+}
+.form-card,
+.calendar-card {
+padding: 2rem 1.5rem;
+}
+.form-card h2,
+.calendar-card h2 {
+font-size: 1.5rem;
+}
+.calendly-inline-widget {
+min-height: 600px;
+}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="logo-container">
+<span class="logo-text">GenStorm Labs</span>
+</div>
+<a href="index.html" class="back-link">
+<span>←</span> Back to Home
+</a>
+</header>
+
+<div class="canvas-container">
+<canvas id="bgCanvas"></canvas>
+</div>
+
+<div class="consultation-container">
+<div class="page-title">
+<h1>Book Your Consultation</h1>
+<p>Let's transform your vision into a powerful digital presence. Fill out the form and schedule a time that works for you.</p>
+</div>
+
+<div class="booking-grid">
+<div class="form-card">
+<h2>Your Information</h2>
+
+<div class="info-section">
+<h3>What to Expect</h3>
+<ul>
+<li>30-minute strategy session</li>
+<li>Discussion of your project goals</li>
+<li>Custom solution recommendations</li>
+<li>Timeline and pricing overview</li>
+</ul>
+</div>
+
+<form id="consultationForm">
+<div class="form-group">
+<label for="name">Full Name *</label>
+<input type="text" id="name" name="name" required placeholder="John Smith">
+</div>
+
+<div class="form-group">
+<label for="company">Company Name *</label>
+<input type="text" id="company" name="company" required placeholder="Your Company">
+</div>
+
+<div class="form-group">
+<label for="email">Email Address *</label>
+<input type="email" id="email" name="email" required placeholder="john@company.com">
+</div>
+
+<div class="form-group">
+<label for="phone">Phone Number (Optional)</label>
+<input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567">
+</div>
+
+<div class="form-group">
+<label for="message">Tell us about your project</label>
+<textarea id="message" name="message" placeholder="Brief description of what you're looking to build..."></textarea>
+</div>
+
+<button type="submit" class="submit-button">Submit & Continue</button>
+
+<div class="success-message" id="successMessage">
+<strong>✓ Information Submitted!</strong><br>
+Now please select a time slot from the calendar →
+</div>
+</form>
+</div>
+
+<div class="calendar-card">
+<h2>Select Your Time Slot</h2>
+<div class="info-section">
+<h3>Booking Instructions</h3>
+<p>1. Fill out the form on the left</p>
+<p>2. Choose an available time slot below</p>
+<p>3. You'll receive a confirmation email</p>
+</div>
+<!-- Calendly inline widget begin -->
+<div class="calendly-inline-widget" 
+     data-url="https://calendly.com/YOUR_USERNAME/30min?hide_gdpr_banner=1&background_color=000000&text_color=ffffff&primary_color=ff5722"
+     style="min-width:320px;height:700px;"></div>
+<script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+<!-- Calendly inline widget end -->
+</div>
+</div>
+</div>
+
+<script>
+// Background Animation
+const canvas = document.getElementById('bgCanvas');
+const ctx = canvas.getContext('2d');
+
+let width = canvas.width = window.innerWidth;
+let height = canvas.height = window.innerHeight;
+
+window.addEventListener('resize', () => {
+width = canvas.width = window.innerWidth;
+height = canvas.height = window.innerHeight;
+});
+
+function drawWaves() {
+const time = Date.now() * 0.0005;
+ctx.clearRect(0, 0, width, height);
+
+for (let i = 0; i < 3; i++) {
+ctx.beginPath();
+ctx.strokeStyle = `rgba(255, 87, 34, ${0.1 + i * 0.05})`;
+ctx.lineWidth = 2;
+for (let x = 0; x < width; x += 10) {
+const y = height/2 + Math.sin(x * 0.01 + time + i) * 60 +
+Math.cos(x * 0.005 + time * 0.5) * 40;
+if (x === 0) {
+ctx.moveTo(x, y);
+} else {
+ctx.lineTo(x, y);
+}
+}
+ctx.stroke();
+}
+
+requestAnimationFrame(drawWaves);
+}
+
+drawWaves();
+
+// Form Handling
+const form = document.getElementById('consultationForm');
+const successMessage = document.getElementById('successMessage');
+
+form.addEventListener('submit', (e) => {
+e.preventDefault();
+  
+const formData = {
+name: document.getElementById('name').value,
+company: document.getElementById('company').value,
+email: document.getElementById('email').value,
+phone: document.getElementById('phone').value,
+message: document.getElementById('message').value,
+timestamp: new Date().toISOString()
+};
+
+// Store in memory (you can replace this with your backend API)
+console.log('Form submitted:', formData);
+
+// Show success message
+successMessage.classList.add('show');
+
+// Scroll to calendar on mobile
+if (window.innerWidth < 768) {
+document.querySelector('.calendar-card').scrollIntoView({ 
+behavior: 'smooth', 
+block: 'start' 
+});
+}
+
+// Optional: Send to your backend
+// fetch('YOUR_API_ENDPOINT', {
+//   method: 'POST',
+//   headers: { 'Content-Type': 'application/json' },
+//   body: JSON.stringify(formData)
+// });
+});
+</script>
+</body>
+</html>
