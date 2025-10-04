@@ -583,7 +583,7 @@ This site is more than a portfolio — it's a gateway to your <span class="about
 <div class="consultation-content">
 <h2 class="scroll-reveal">Ready to Launch Your Vision?</h2>
 <p class="scroll-reveal">Let's discuss how we can transform your ideas into a powerful digital presence that tells your unique story.</p>
-<a href="#contact" class="cta-button scroll-reveal">Book a Consultation</a>
+<a href="consultation.html" class="cta-button scroll-reveal">Book a Consultation</a>
 </div>
 </section>
 <footer id="contact">
@@ -602,7 +602,7 @@ let width = canvas.width = window.innerWidth;
 let height = canvas.height = window.innerHeight;
 let mouseX = width / 2;
 let mouseY = height / 2;
-let mouseRadius = isMobile ? 0 : 150; // Disable mouse interaction on mobile
+let mouseRadius = isMobile ? 0 : 150;
 
 window.addEventListener('resize', () => {
 width = canvas.width = window.innerWidth;
@@ -616,7 +616,6 @@ mouseY = e.clientY;
 }
 });
 
-// Particle class
 class Particle {
 constructor() {
 this.x = Math.random() * width;
@@ -632,7 +631,7 @@ this.speed = Math.random() * 0.5 + 0.1;
 this.angle = 0;
 this.orbitRadius = Math.random() * 50 + 20;
 this.orbitSpeed = Math.random() * 0.02 + 0.005;
-this.mode = Math.floor(Math.random() * 3); // 0: static, 1: orbit, 2: float
+this.mode = Math.floor(Math.random() * 3);
 this.pulse = 0;
 this.pulseSpeed = Math.random() * 0.05 + 0.01;
 }
@@ -641,7 +640,6 @@ update() {
 this.pulse += this.pulseSpeed;
 if (this.pulse > Math.PI * 2) this.pulse = 0;
 
-// Only apply mouse interaction on desktop
 if (!isMobile) {
 const dx = mouseX - this.x;
 const dy = mouseY - this.y;
@@ -657,7 +655,6 @@ if (distance < mouseRadius) {
 this.x -= directionX;
 this.y -= directionY;
 } else {
-// Return to base position with easing
 if (this.x !== this.baseX) {
 let dx = this.x - this.baseX;
 this.x -= dx / 10;
@@ -669,7 +666,6 @@ this.y -= dy / 10;
 }
 }
 
-// Apply movement based on mode
 if (this.mode === 1) {
 this.angle += this.orbitSpeed;
 this.x = this.baseX + Math.cos(this.angle) * this.orbitRadius;
@@ -679,7 +675,6 @@ this.x += Math.sin(this.angle) * this.speed;
 this.y += Math.cos(this.angle) * this.speed;
 this.angle += 0.01;
 
-// Bounce off edges
 if (this.x < 0 || this.x > width) this.speed = -this.speed;
 if (this.y < 0 || this.y > height) this.speed = -this.speed;
 }
@@ -692,7 +687,6 @@ ctx.arc(this.x, this.y, pulseSize, 0, Math.PI * 2);
 ctx.closePath();
 ctx.fillStyle = this.color;
 
-// Add glow for orange particles
 if (this.color === '#ff5722') {
 ctx.shadowColor = '#ff5722';
 ctx.shadowBlur = 15;
@@ -707,14 +701,12 @@ ctx.shadowBlur = 0;
 }
 }
 
-// Create particles - none on mobile, only waves
 const particles = [];
 const particleCount = isMobile ? 0 : 200;
 for (let i = 0; i < particleCount; i++) {
 particles.push(new Particle());
 }
 
-// Connect particles that are close to each other
 function connectParticles() {
 for (let i = 0; i < particles.length; i++) {
 for (let j = i; j < particles.length; j++) {
@@ -734,7 +726,6 @@ ctx.stroke();
 }
 }
 
-// Create wave effect - simpler on mobile
 function drawWaves() {
 const time = Date.now() * 0.001;
 for (let i = 0; i < (isMobile ? 2 : 3); i++) {
@@ -754,24 +745,18 @@ ctx.stroke();
 }
 }
 
-// Animation loop
 function animate() {
-// Clear with fade effect
 ctx.fillStyle = isMobile ? 'rgba(0, 0, 0, 0.1)' : 'rgba(0, 0, 0, 0.05)';
 ctx.fillRect(0, 0, width, height);
 
-// Draw waves
 drawWaves();
 
-// Only draw particles and connections on desktop
 if (!isMobile) {
-// Update and draw particles
 particles.forEach(particle => {
 particle.update();
 particle.draw();
 });
 
-// Connect particles
 connectParticles();
 }
 
@@ -780,7 +765,6 @@ requestAnimationFrame(animate);
 
 animate();
 
-// Mobile menu functionality
 const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
 const nav = document.querySelector('nav');
 
@@ -789,7 +773,6 @@ mobileMenuToggle.classList.toggle('active');
 nav.classList.toggle('active');
 });
 
-// Close mobile menu when clicking on a link
 document.querySelectorAll('nav a').forEach(link => {
 link.addEventListener('click', () => {
 mobileMenuToggle.classList.remove('active');
@@ -797,7 +780,6 @@ nav.classList.remove('active');
 });
 });
 
-// Scroll Animation
 const scrollRevealElements = document.querySelectorAll('.scroll-reveal');
 const scrollObserver = new IntersectionObserver((entries) => {
 entries.forEach(entry => {
@@ -814,7 +796,6 @@ scrollRevealElements.forEach(element => {
 scrollObserver.observe(element);
 });
 
-// Smooth scroll for navigation
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 anchor.addEventListener('click', function (e) {
 e.preventDefault();
