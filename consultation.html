@@ -454,9 +454,27 @@ const form = document.getElementById('consultationForm');
 const successMessage = document.getElementById('successMessage');
 const submitBtn = document.getElementById('submitBtn');
 
+console.log('Form script loaded');
+console.log('Form element:', form);
+console.log('Submit button:', submitBtn);
+
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
+    console.log('Form submitted');
     
+    // TEMPORARY: Just show success message for testing
+    successMessage.classList.add('show');
+    console.log('Success message should be visible');
+    
+    // Scroll to calendar on mobile
+    if (window.innerWidth < 768) {
+        document.querySelector('.calendar-card').scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+        });
+    }
+    
+    /* UNCOMMENT THIS AFTER TESTING - REQUIRES WEB3FORMS ACCESS KEY
     // Disable button and show loading state
     submitBtn.disabled = true;
     const originalText = submitBtn.textContent;
@@ -465,8 +483,8 @@ form.addEventListener('submit', async (e) => {
     // Get form data
     const formData = new FormData(form);
     
-    // Add Web3Forms access key - REPLACE THIS WITH YOUR KEY FROM WEB3FORMS.COM
-    formData.append("access_key", "13691e86-2009-4d57-be23-714c45d13a6b");
+    // Add Web3Forms access key - REPLACE YOUR_ACCESS_KEY_HERE with actual key
+    formData.append("access_key", "YOUR_ACCESS_KEY_HERE");
     formData.append("subject", "New Consultation Request - GenStorm Labs");
     
     try {
@@ -503,6 +521,7 @@ form.addEventListener('submit', async (e) => {
         submitBtn.disabled = false;
         submitBtn.textContent = originalText;
     }
+    */
 });
 </script>
 </body>
