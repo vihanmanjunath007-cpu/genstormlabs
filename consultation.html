@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Book a Consultation | GenStorm Labs</title>
 <style>
-/* [Keep all your existing CSS - no changes needed] */
 * {
 margin: 0;
 padding: 0;
@@ -18,7 +17,308 @@ color: #ffffff;
 overflow-x: hidden;
 min-height: 100vh;
 }
-/* [Rest of your CSS stays the same] */
+/* Header/Navigation */
+header {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+padding: 1.5rem 2rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+z-index: 1000;
+background: rgba(0, 0, 0, 0.95);
+backdrop-filter: blur(10px);
+border-bottom: 1px solid rgba(255, 87, 34, 0.2);
+}
+.logo-container {
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+.logo-text {
+font-size: 1.3rem;
+font-weight: 600;
+color: #fff;
+}
+.back-link {
+color: #ff5722;
+text-decoration: none;
+font-size: 0.9rem;
+font-weight: 500;
+letter-spacing: 1px;
+text-transform: uppercase;
+transition: all 0.3s;
+display: flex;
+align-items: center;
+gap: 0.5rem;
+}
+.back-link:hover {
+color: #ff7043;
+transform: translateX(-5px);
+}
+/* Canvas Background */
+.canvas-container {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: 0;
+}
+#bgCanvas {
+width: 100%;
+height: 100%;
+display: block;
+}
+/* Main Content */
+.consultation-container {
+position: relative;
+z-index: 10;
+padding: 8rem 2rem 4rem;
+max-width: 1200px;
+margin: 0 auto;
+}
+.page-title {
+text-align: center;
+margin-bottom: 1rem;
+}
+.page-title h1 {
+font-size: 3rem;
+font-weight: 300;
+color: #ffffff;
+margin-bottom: 1rem;
+}
+.page-title p {
+font-size: 1.2rem;
+color: #ccc;
+max-width: 600px;
+margin: 0 auto;
+line-height: 1.6;
+}
+/* Booking Grid */
+.booking-grid {
+display: grid;
+grid-template-columns: 1fr;
+gap: 2rem;
+margin-top: 4rem;
+}
+/* Form Card */
+.form-card {
+background: rgba(255, 255, 255, 0.05);
+backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 87, 34, 0.2);
+border-radius: 16px;
+padding: 3rem;
+box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+transition: all 0.4s ease;
+}
+.form-card:hover {
+border-color: rgba(255, 87, 34, 0.5);
+box-shadow: 0 25px 80px rgba(255, 87, 34, 0.2);
+}
+.form-card h2 {
+font-size: 2rem;
+margin-bottom: 2rem;
+color: #ff5722;
+font-weight: 400;
+}
+.form-group {
+margin-bottom: 1.5rem;
+}
+.form-group label {
+display: block;
+margin-bottom: 0.5rem;
+color: #ffffff;
+font-weight: 500;
+font-size: 0.95rem;
+letter-spacing: 0.5px;
+}
+.form-group input,
+.form-group textarea {
+width: 100%;
+padding: 1rem;
+background: rgba(255, 255, 255, 0.08);
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 8px;
+color: #ffffff;
+font-size: 1rem;
+font-family: 'Helvetica Neue', Arial, sans-serif;
+transition: all 0.3s ease;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+outline: none;
+border-color: #ff5722;
+background: rgba(255, 255, 255, 0.12);
+box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.1);
+}
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+color: rgba(255, 255, 255, 0.4);
+}
+.form-group textarea {
+min-height: 120px;
+resize: vertical;
+}
+/* Calendar Card */
+.calendar-card {
+background: rgba(255, 255, 255, 0.05);
+backdrop-filter: blur(20px);
+border: 1px solid rgba(255, 87, 34, 0.2);
+border-radius: 16px;
+padding: 3rem;
+box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+transition: all 0.4s ease;
+}
+.calendar-card:hover {
+border-color: rgba(255, 87, 34, 0.5);
+box-shadow: 0 25px 80px rgba(255, 87, 34, 0.2);
+}
+.calendar-card h2 {
+font-size: 2rem;
+margin-bottom: 2rem;
+color: #ff5722;
+font-weight: 400;
+}
+/* Submit Button */
+.submit-button {
+width: 100%;
+padding: 1.2rem 2rem;
+background: #ff5722;
+color: #fff;
+text-decoration: none;
+font-size: 1rem;
+font-weight: 600;
+letter-spacing: 2px;
+text-transform: uppercase;
+border-radius: 8px;
+border: none;
+cursor: pointer;
+transition: all 0.3s ease-out;
+box-shadow: 0 10px 30px rgba(255, 87, 34, 0.4);
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 1rem;
+margin-top: 2rem;
+}
+.submit-button:hover {
+transform: translateY(-3px);
+background: #ff7043;
+box-shadow: 0 15px 40px rgba(255, 87, 34, 0.6);
+}
+.submit-button:active {
+transform: translateY(-1px);
+}
+.submit-button::after {
+content: '→';
+font-size: 1.5rem;
+transition: transform 0.3s;
+}
+.submit-button:hover::after {
+transform: translateX(5px);
+}
+.submit-button:disabled {
+opacity: 0.6;
+cursor: not-allowed;
+transform: none;
+}
+/* Success Message */
+.success-message {
+display: none;
+background: rgba(76, 175, 80, 0.1);
+border: 1px solid rgba(76, 175, 80, 0.3);
+border-radius: 8px;
+padding: 1.5rem;
+margin-top: 2rem;
+text-align: center;
+color: #81c784;
+animation: slideIn 0.5s ease-out;
+}
+.success-message.show {
+display: block;
+}
+@keyframes slideIn {
+from {
+opacity: 0;
+transform: translateY(-20px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+/* Info Section */
+.info-section {
+background: rgba(255, 87, 34, 0.05);
+border: 1px solid rgba(255, 87, 34, 0.2);
+border-radius: 12px;
+padding: 2rem;
+margin-bottom: 2rem;
+}
+.info-section h3 {
+color: #ff5722;
+font-size: 1.2rem;
+margin-bottom: 1rem;
+font-weight: 500;
+}
+.info-section p {
+color: #ccc;
+line-height: 1.7;
+margin-bottom: 0.5rem;
+}
+.info-section ul {
+list-style: none;
+padding-left: 0;
+margin-top: 1rem;
+}
+.info-section ul li {
+color: #ccc;
+padding: 0.5rem 0;
+padding-left: 1.5rem;
+position: relative;
+}
+.info-section ul li::before {
+content: '✓';
+position: absolute;
+left: 0;
+color: #ff5722;
+font-weight: bold;
+}
+/* Responsive */
+@media (min-width: 768px) {
+.page-title h1 {
+font-size: 4rem;
+}
+.booking-grid {
+grid-template-columns: 1fr 1fr;
+gap: 3rem;
+}
+}
+@media (max-width: 767px) {
+header {
+padding: 1rem 1.5rem;
+}
+.consultation-container {
+padding: 6rem 1.5rem 2rem;
+}
+.page-title h1 {
+font-size: 2rem;
+}
+.page-title p {
+font-size: 1rem;
+}
+.form-card,
+.calendar-card {
+padding: 2rem 1.5rem;
+}
+.form-card h2,
+.calendar-card h2 {
+font-size: 1.5rem;
+}
+}
 </style>
 </head>
 <body>
@@ -55,7 +355,6 @@ min-height: 100vh;
 </ul>
 </div>
 
-<!-- ✏️ CHANGED: Added action and method attributes -->
 <form id="consultationForm" action="https://formspree.io/f/mzzjvbnv" method="POST">
 <div class="form-group">
 <label for="name">Full Name *</label>
@@ -82,7 +381,6 @@ min-height: 100vh;
 <textarea id="message" name="message" placeholder="Brief description of what you're looking to build..."></textarea>
 </div>
 
-<!-- ✏️ ADDED: Hidden fields for Formspree configuration -->
 <input type="hidden" name="_subject" value="New Consultation Request - GenStorm Labs">
 <input type="text" name="_gotcha" style="display:none">
 
@@ -103,7 +401,6 @@ Now please select a time slot from the calendar →
 <p>2. Choose an available time slot below</p>
 <p>3. You'll receive a confirmation email</p>
 </div>
-<!-- ✏️ CHANGED: Replaced Calendly with Cal.com iframe -->
 <iframe 
     src="https://cal.com/genstormlabs/30min"
     style="width:100%;height:700px;border:none;border-radius:8px;"
@@ -152,17 +449,14 @@ requestAnimationFrame(drawWaves);
 
 drawWaves();
 
-// ✏️ CHANGED: Simplified form handling for Formspree
+// Form Handling
 const form = document.getElementById('consultationForm');
 const successMessage = document.getElementById('successMessage');
 
 form.addEventListener('submit', (e) => {
-// Don't prevent default - let Formspree handle submission
-// Just show the success message
 setTimeout(() => {
 successMessage.classList.add('show');
 
-// Scroll to calendar on mobile
 if (window.innerWidth < 768) {
 document.querySelector('.calendar-card').scrollIntoView({ 
 behavior: 'smooth', 
