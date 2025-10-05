@@ -449,28 +449,22 @@ requestAnimationFrame(drawWaves);
 
 drawWaves();
 
-// Form Handling with Web3Forms (AJAX - No Redirect)
+// Form Handling with Web3Forms
 const form = document.getElementById('consultationForm');
 const successMessage = document.getElementById('successMessage');
-const submitBtn = document.getElementById('.submit-button');
+const submitBtn = document.querySelector('.submit-button');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
     
-    // Disable button and show loading state
     submitBtn.disabled = true;
-    const originalText = submitBtn.textContent;
     submitBtn.textContent = 'Submitting...';
     
-    // Get form data
     const formData = new FormData(form);
-    
-    // Add Web3Forms access key
     formData.append("access_key", "13691e86-2009-4d57-be23-714c45d13a6b");
     formData.append("subject", "New Consultation Request - GenStorm Labs");
     
     try {
-        // Send to Web3Forms
         const response = await fetch("https://api.web3forms.com/submit", {
             method: "POST",
             body: formData
@@ -479,13 +473,9 @@ form.addEventListener('submit', async (e) => {
         const result = await response.json();
         
         if (result.success) {
-            // Show success message
             successMessage.classList.add('show');
-            
-            // Reset form
             form.reset();
             
-            // Scroll to calendar on mobile
             if (window.innerWidth < 768) {
                 document.querySelector('.calendar-card').scrollIntoView({ 
                     behavior: 'smooth', 
@@ -493,15 +483,14 @@ form.addEventListener('submit', async (e) => {
                 });
             }
         } else {
-            alert('Something went wrong. Please try again or email us directly.');
+            alert('Something went wrong. Please try again.');
         }
     } catch (error) {
         console.error('Error:', error);
-        alert('Something went wrong. Please try again or email us directly.');
+        alert('Error submitting form. Please try again.');
     } finally {
-        // Re-enable button
         submitBtn.disabled = false;
-        submitBtn.textContent = originalText;
+        submitBtn.textContent = 'Submit & Continue';
     }
 });
 </script>
