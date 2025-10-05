@@ -355,7 +355,7 @@ font-size: 1.5rem;
 </ul>
 </div>
 
-<form id="consultationForm" action="https://formspree.io/f/mzzjvbnv" method="POST">
+<form id="consultationForm">
 <div class="form-group">
 <label for="name">Full Name *</label>
 <input type="text" id="name" name="name" required placeholder="John Smith">
@@ -452,7 +452,7 @@ drawWaves();
 // Form Handling with Web3Forms (AJAX - No Redirect)
 const form = document.getElementById('consultationForm');
 const successMessage = document.getElementById('successMessage');
-const submitBtn = document.getElementById('submitBtn');
+const submitBtn = document.getElementById('.submit-button');
 
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
